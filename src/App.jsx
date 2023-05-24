@@ -1,15 +1,24 @@
 import Login from "./Components/Auth/Login";
-import CounterCard from "./Components/Counter/CounterCard";
-import WithSubnavigation from "./Components/Navbar/Nav";
-import UserCard from "./Components/User/UserCard";
+import SignUp from "./Components/Auth/SignUp";
+import Home from "./Components/Home/Home";
+import Navbar from "./Components/Navbar/Nav";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProductDetails from "./Components/Product/ProductDetails";
+import ProductList from "./Components/Product/ProductList";
 
 function App() {
   return (
-    <div className="App">
-      <WithSubnavigation />
-      <CounterCard />
-      <UserCard />
-      <Login />
+    <div>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/products/AutomaticWatch" element={<ProductDetails />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

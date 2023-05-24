@@ -14,6 +14,7 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Heading,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -21,9 +22,15 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
-export default function WithSubnavigation() {
+export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
+  const navigate = useNavigate();
+
+  const onSignUpClick = () => navigate("/signup");
+  const onSignInClick = () => navigate("/signin");
+  const onHomeClick = () => navigate("/");
 
   return (
     <Box>
@@ -53,13 +60,16 @@ export default function WithSubnavigation() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
+          <Heading
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
+            size="md"
+            fontFamily="cursive"
+            onClick={onHomeClick}
+            cursor={"pointer"}
           >
-            Logo
-          </Text>
+            ChakraCommerce
+          </Heading>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
@@ -77,7 +87,7 @@ export default function WithSubnavigation() {
             fontSize={"sm"}
             fontWeight={400}
             variant={"link"}
-            href={"#"}
+            onClick={onSignInClick}
           >
             Sign In
           </Button>
@@ -88,10 +98,10 @@ export default function WithSubnavigation() {
             fontWeight={600}
             color={"white"}
             bg={"pink.400"}
-            href={"#"}
             _hover={{
               bg: "pink.300",
             }}
+            onClick={onSignUpClick}
           >
             Sign Up
           </Button>
@@ -267,11 +277,24 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
-    label: "Inspiration",
+    label: "Electronics",
+    href: "/products",
+  },
+  {
+    label: "Fashion",
+    href: "#",
+  },
+  {
+    label: "Explore",
     children: [
       {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
+        label: "Products by Category",
+        subLabel: "Checkout products you like!",
+        href: "#",
+      },
+      {
+        label: "Trending",
+        subLabel: "Go ahead with the tread?",
         href: "#",
       },
       {
@@ -282,26 +305,20 @@ const NAV_ITEMS = [
     ],
   },
   {
-    label: "Find Work",
+    label: "More",
     children: [
       {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
+        label: "Settings",
         href: "#",
       },
       {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
+        label: "Customer Care",
+        href: "#",
+      },
+      {
+        label: "Download App",
         href: "#",
       },
     ],
-  },
-  {
-    label: "Learn Design",
-    href: "#",
-  },
-  {
-    label: "Hire Designers",
-    href: "#",
   },
 ];
