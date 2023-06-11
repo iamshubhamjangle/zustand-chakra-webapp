@@ -1,3 +1,8 @@
+## [View the Project Demo](https://zustand-chakra-ekart-demo.vercel.app/)
+
+<br>
+<br>
+
 # About
 
 This project showcases
